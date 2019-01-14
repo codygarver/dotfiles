@@ -1,0 +1,43 @@
+export EDITOR=nano
+export GOPATH=$HOME
+
+# quilt stuff
+export QUILT_PATCHES=debian/patches
+export QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
+
+# dch stuff
+export DEBEMAIL="{{ .email }}"
+export DEBFULLNAME="{{ .name }}"
+
+function dchb { dch -v "$1" -D bionic "New upstream release." && git commit -am "Release $1" ; }
+
+function dchj { git commit -am "Release $1" && git checkout origin/deb-packaging && dch -v "$1" -D bionic "New upstream release." && git commit -am "Release $1" && git push origin HEAD:deb-packaging && git checkout master && git push ; }
+
+# youtube-dl
+function ytdl { youtube-dl -o "%(title)s-%(id)s.%(ext)s" "$1" ; }
+
+function ytdla { youtube-dl --extract-audio -o "%(playlist_index)s. %(title)s-%(id)s.%(ext)s" "$1" ; }
+
+function ytdls { youtube-dl --write-srt --sub-lang en --convert-subs srt -o "%(title)s-%(id)s.%(ext)s" "$1" ; }
+
+# build systems
+function buildc { sudo rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr && sudo make -j install && cd .. ; }
+
+function buildm { sudo rm -f build && meson build --prefix=/usr && sudo ninja -C build install && cd .. ; }
+
+# Debian, Ubuntu, elementary OS
+function policy { apt-cache policy "$1" ; }
+
+function bzrdeb { bzr export pack lp:~elementary-os/"$1"/deb-packaging && mv pack/debian . && rm -rf pack ; }
+
+function gitdeb { git clone --depth 1 https://github.com/elementary/"$1" -b deb-packaging pack && mv pack/debian . && rm -rf pack ; }
+
+function dbuild { debuild -us -uc -j -b ; }
+
+# misc
+function cdtmp { tmp_dir=$(mktemp -d) && cd $tmp_dir ; }
+
+function publish-zsync { zsyncmake -e -o "$1"'.zsync' "$1"; }
+
+function recodeaudio { ffmpeg -i "$1" -strict experimental -acodec aac -aq 6 -ac 2 -vcodec copy "$2" >/dev/null -threads $(nproc --all) ; }
+
