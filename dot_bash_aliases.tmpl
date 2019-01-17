@@ -34,6 +34,8 @@ function gitdeb { git clone --depth 1 https://github.com/elementary/"$1" -b deb-
 
 function dbuild { debuild -us -uc -j -b ; }
 
+function deps { mk-build-deps && sudo dpkg -i *.deb ; sudo apt -y -f install ; }
+
 # misc
 function cdtmp { tmp_dir=$(mktemp -d) && cd $tmp_dir ; }
 
