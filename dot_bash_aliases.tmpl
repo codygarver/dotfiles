@@ -23,7 +23,7 @@ function ytdls { youtube-dl --write-srt --sub-lang en --convert-subs srt -o "%(t
 # build systems
 function buildc { sudo rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr && sudo make -j install && cd .. ; }
 
-function buildm { sudo rm -f build && meson build --prefix=/usr && sudo ninja -C build install && cd .. ; }
+function buildm { sudo rm -rf build && meson build --prefix=/usr && sudo ninja -C build install && cd .. ; }
 
 # Debian, Ubuntu, elementary OS
 function policy { apt-cache policy "$1" ; }
