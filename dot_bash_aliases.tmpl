@@ -30,7 +30,7 @@ function bzrdeb { bzr export pack lp:~elementary-os/"$1"/deb-packaging && mv pac
 
 function gitdeb { git clone --depth 1 https://github.com/elementary/"$1" -b deb-packaging pack && mv pack/debian . && rm -rf pack ; }
 
-{{- if eq .chezmoi.osRelease.id "ubuntu" }}
+{{- if or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "elementary") }}
 function policy { apt-cache policy "$1" ; }
 
 function dbuild { debuild -us -uc -j -b ; }
