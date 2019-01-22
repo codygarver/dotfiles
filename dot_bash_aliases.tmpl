@@ -45,4 +45,6 @@ function publish-zsync { zsyncmake -e -o "$1"'.zsync' "$1"; }
 
 function recodeaudio { ffmpeg -i "$1" -strict experimental -acodec aac -aq 6 -ac 2 -vcodec copy "$2" >/dev/null -threads $(nproc --all) ; }
 
+function gcad { GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(date)" ; }
+
 alias nano="nano --nonewlines"
