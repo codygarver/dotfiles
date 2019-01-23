@@ -1,10 +1,6 @@
 export EDITOR=nano
 export GOPATH=$HOME
 
-# quilt stuff
-export QUILT_PATCHES=debian/patches
-export QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
-
 # dch stuff
 export DEBEMAIL="{{ .email }}"
 export DEBFULLNAME="{{ .name }}"
