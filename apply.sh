@@ -1,4 +1,4 @@
-chezmoi -v apply
+chezmoi --config chezmoi.toml -v apply
 chmod 644 $HOME/.ssh/config
 
 if [ $(xrandr -q | grep " connected " | wc -l) = "3" ]; then
