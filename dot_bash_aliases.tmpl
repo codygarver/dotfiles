@@ -46,3 +46,5 @@ function gcad { GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date
 alias nano="nano --nonewlines"
 
 function kb { copr-cli build kaizen $1 ; }
+
+function garch { git archive --prefix="$1-$2/" -o "$1-$2.tar.gz" HEAD && mv "$1"-"$2".tar.gz $HOME/rpmbuild/SOURCES/ ; }
