@@ -19,7 +19,7 @@ function ytdls { youtube-dl --write-srt --sub-lang en --convert-subs srt -o "%(t
 # build systems
 function buildc { sudo rm -rf build && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr && sudo make -j install && cd .. ; }
 
-function buildm { sudo rm -rf build && meson build --prefix=/usr && sudo ninja -C build install && cd .. ; }
+function buildm { sudo rm -rf build && meson build --prefix=/usr && sudo ninja -C build install ; }
 
 # Debian, Ubuntu, elementary OS
 function bzrdeb { bzr export pack lp:~elementary-os/"$1"/deb-packaging && mv pack/debian . && rm -rf pack ; }
