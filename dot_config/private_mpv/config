@@ -1,0 +1,69 @@
+no-border
+fs=yes
+fs-screen=2
+af=lavfi=[acompressor=threshold=-20dB:ratio=3:makeup=11dB]
+# Write your default config options here!
+#hwdec=vdpau
+
+# this line only added for mplayer-vaapi
+#vo=vaapi,xv,directfb
+#va=vaapi
+
+#test
+#hwdec=vdpau
+#vo=vdpau
+
+#cache=2000
+#cache-min=99
+cache-initial=1000
+cache=1000000
+cache-seek-min=99
+
+ao=pulse
+
+# heavily based on https://wiki.archlinux.org/index.php/MPlayer#Configuration
+
+# default configuration that applies to every file
+[default]
+
+# use X11 for video output, use a framebuffer as fallback
+#vo=xv,directfb
+
+# multithreaded decoding of H264/MPEG-1/2 (valid: 1-16, 0 = autodetect)
+#vd-lavc-threads=0
+
+# prefer using six channels audio
+audio-channels = 6
+
+# scale the subtitles to the 3% of the screen size
+#osd-scale = 3
+
+# set the window title using the media filename, when not set with --title.
+#use-filename-title=yes
+
+# disable screensaver
+#heartbeat-cmd="gnome-screensaver-command --deactivate &" # stop xscreensaver
+#stop-xscreensaver="yes" # stop gnome-screensaver
+
+# normalize audio
+#af=drc
+
+# allow to seek in a file which is still downloading whilst watching it
+index=default
+
+# skip displaying some frames to maintain A/V sync on slow systems
+#framedrop=vo
+
+# profile for up-mixing two channels audio to six channels
+# use -profile 2chto6ch to activate
+#[2chto6ch]
+#af-add=pan=6:1:0:.4:0:.6:2:0:1:0:.4:.6:2
+
+# profile to down-mixing six channels audio to two channels
+# use -profile 6chto2ch to activate
+#[6chto2ch]
+#af-add=pan=2:0.7:0:0:0.7:0.5:0:0:0.5:0.6:0.6:0:0
+
+# for live streams
+#cache=4096
+#cache-min=3
