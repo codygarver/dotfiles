@@ -46,6 +46,8 @@ function recodeaudio { ffmpeg -i "$1" -strict experimental -acodec aac -aq 6 -ac
 
 function gcad { GIT_COMMITTER_DATE="$(date)" git commit --amend --no-edit --date "$(date)" ; }
 
+function delete-tag-origin { git push --delete origin "$1" ; }
+
 alias nano="nano --nonewlines"
 
 function kb { copr-cli build kaizen $1 ; }
