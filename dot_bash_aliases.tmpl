@@ -14,6 +14,8 @@ function ytdl { youtube-dl -o "%(title)s-%(id)s.%(ext)s" "$1" ; }
 
 function ytdla { youtube-dl --extract-audio -o "%(playlist_index)s. %(title)s-%(id)s.%(ext)s" "$1" ; }
 
+function ytdlp { youtube-dl -o "%(playlist_index)s-%(title)s.%(ext)s" "$1" ; }
+
 function ytdls { youtube-dl --write-srt --sub-lang en --convert-subs srt -o "%(title)s-%(id)s.%(ext)s" "$1" ; }
 
 # build systems
